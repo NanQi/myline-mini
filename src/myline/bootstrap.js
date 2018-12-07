@@ -1,0 +1,1 @@
+import './wx-xxx/bootstrap'
