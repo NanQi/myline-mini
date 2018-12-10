@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/example_index/main",
+    "pages/example_api/main",
+    "pages/example_modal/main",
     "pages/index/main"
   ],
   "window": {

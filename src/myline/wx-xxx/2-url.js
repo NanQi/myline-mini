@@ -5,7 +5,7 @@ const getUrl = (pageName, extras = null) => {
         url += '?' + wx.utils.transformRequest(extras)
     }
 
-    return url;
+    return url
 }
 
 const getPageName = url => {
@@ -13,7 +13,7 @@ const getPageName = url => {
     if (matchs.length > 1) {
         return matchs[1]
     } else {
-        throw new Error('not match');
+        throw new Error('not match')
     }
 }
 

@@ -22,25 +22,25 @@ for (let key in wx) {
 
     wx.pro[key] = (options) => {
         if ($interceptors[key] && $interceptors[key].config) {
-            let ret = $interceptors[key].config.call(this, options);
+            let ret = $interceptors[key].config.call(this, options)
             if (ret === false) {
-                options.fail && options.fail('aborted by interceptor');
-                return;
+                options.fail && options.fail('aborted by interceptor')
+                return
             }
-            options = ret;
+            options = ret
         }
         return new Promise((resolve, reject) => {
-            let bak = {};
             ['fail', 'success', 'complete'].forEach((k) => {
-                bak[k] = options[k];
+                let bak = {}
+                bak[k] = options[k]
                 options[k] = (res) => {
                     if ($interceptors[key] && $interceptors[key][k]) {
-                        res = $interceptors[key][k].call(this, res);
+                        res = $interceptors[key][k].call(this, res)
                     }
                     if (k === 'success')
-                        resolve(res);
+                        resolve(res)
                     else if (k === 'fail')
-                        reject(res);
+                        reject(res)
                 }
             })
             wx[key](Object.assign({}, options))
@@ -50,5 +50,5 @@ for (let key in wx) {
 
 
 wx.pro.interceptor = (api, provider) => {
-    $interceptors[api] = provider;
+    $interceptors[api] = provider
 }

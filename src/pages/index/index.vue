@@ -1,5 +1,7 @@
 <template>
-    <div>nanqi</div>
+    <div>
+      <button @click="openModal">openModal</button>
+    </div>
 </template>
 
 <script>
@@ -9,7 +11,18 @@ export default {
     }
   },
   methods: {
-   
+    openModal() {
+      wx.modal.open('example_modal')
+        .then(res => {
+          console.log('then', res)
+        })
+        .catch(err => {
+          console.log('catch', err)
+        })
+        .finally(() => {
+          console.log('finally')
+        })
+    }
   },
 }
 </script>
