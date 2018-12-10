@@ -21,6 +21,7 @@ for (let key in wx) {
     }
 
     wx.pro[key] = (options) => {
+        options = options || {}
         if ($interceptors[key] && $interceptors[key].config) {
             let ret = $interceptors[key].config.call(this, options)
             if (ret === false) {
@@ -30,20 +31,24 @@ for (let key in wx) {
             options = ret
         }
         return new Promise((resolve, reject) => {
-            ['fail', 'success', 'complete'].forEach((k) => {
-                let bak = {}
-                bak[k] = options[k]
-                options[k] = (res) => {
-                    if ($interceptors[key] && $interceptors[key][k]) {
-                        res = $interceptors[key][k].call(this, res)
+            try {
+                ['fail', 'success', 'complete'].forEach((k) => {
+                    let bak = {}
+                    bak[k] = options[k]
+                    options[k] = (res) => {
+                        if ($interceptors[key] && $interceptors[key][k]) {
+                            res = $interceptors[key][k].call(this, res)
+                        }
+                        if (k === 'success')
+                            resolve(res)
+                        else if (k === 'fail')
+                            reject(res)
                     }
-                    if (k === 'success')
-                        resolve(res)
-                    else if (k === 'fail')
-                        reject(res)
-                }
-            })
-            wx[key](Object.assign({}, options))
+                })
+            } catch (err) {
+               console.error(err) 
+            }
+            wx[key](options)
         })
     }
 }

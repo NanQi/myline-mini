@@ -2,22 +2,21 @@ import md5 from 'md5'
 
 const preCacheKeyClearFetch = 'storage:clear:fetch:'
 
-async function _request(options) {
-	if(options.toast) {
-		wx.pro.showLoading({ title: '加载中', mask: true})
-	}
+async function _request(paramOptions) {
+    let options = Object.assign({}, paramOptions)
+    options.url = wx.conf.baseUrl + paramOptions.url
+    try {
+        return wx.pro.request(options)
+    } catch(err) {
+        if (err.status_code == 491) {
+            let { code } = await wx.pro.login()
+            wx.cache.set('storage:authorization', code)
+            wx.cache.set('memory:refresh', true)
+            return _request(paramOptions)
+        }
 
-	let res = null
-
-	try {
-		res = await wx.pro.request(options)
-	} finally {
-		if(options.toast) {
-			wx.pro.hideLoading()
-		}
-	}
-
-	return res
+        throw err;
+    }
 }
 
 function isExpire(url) {

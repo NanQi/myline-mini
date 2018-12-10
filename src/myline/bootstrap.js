@@ -1,4 +1,5 @@
 import './wx-xxx/bootstrap'
+import './sign'
 import Vue from 'vue'
 
 Vue.config.errorHandler = res => {

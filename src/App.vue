@@ -1,8 +1,12 @@
 <script>
 export default {
-  created () {
-   
-  }
+  initData () {
+      let isLogin = wx.cache.get('storage:isLogin')
+      if (!isLogin) {
+          wx.pro.redirectTo('login')
+          return
+      }
+  },
 }
 </script>
 

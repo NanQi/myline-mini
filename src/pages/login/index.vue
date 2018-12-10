@@ -19,9 +19,10 @@ export default {
     }
   },
   methods: {
-      login() {
-
-      }
+    async login() {
+        wx.api.get('getData') 
+        // this.$navigate.redirectTo('example_index')
+    }
   },
 }
 </script>

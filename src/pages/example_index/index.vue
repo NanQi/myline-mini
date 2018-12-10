@@ -29,6 +29,9 @@ export default {
       this.showNotify('通知内容');
     }
   },
+  initData() {
+    console.log('index initData')
+  }
 }
 </script>
 

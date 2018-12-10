@@ -1,6 +1,7 @@
 <template>
   <div class="example-div">
     <mp-button type="primary" size="large" @click="get">wx.api.get</mp-button>
+    <mp-button type="primary" size="large" @click="post">wx.api.post</mp-button>
     <mp-button type="primary" size="large" @click="fetch">wx.api.fetch</mp-button>
   </div>
 </template>
@@ -11,23 +12,25 @@ export default {
   components: {
     mpButton,
   },
-  data () {
+  data() {
     return {
     }
   },
   methods: {
     async get() {
-      let res = await wx.api.get('https://api.youyag.com/employees')
+      let res = await wx.api.get('getData')
+      console.log(res)
+    },
+    async post() {
+      let res = await wx.api.post('login');
       console.log(res)
     },
     async fetch() {
-      let res = await wx.api.fetch('https://api.youyag.com/employees')
-      console.log(res)
+      await wx.api.fetch('employees')
     }
   },
 }
 </script>
 
 <style scoped>
-
 </style>

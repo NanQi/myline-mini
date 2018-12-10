@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/main",
     "pages/example_index/main",
     "pages/example_api/main",
     "pages/example_modal/main",
