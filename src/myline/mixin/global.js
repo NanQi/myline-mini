@@ -1,4 +1,5 @@
-import $ui from '../ui'
+import $ui from '../$ui'
+import $navigate from '../$navigate'
 let lastPageName = ''
 let pageList = []
 let autoClosePageList = []
@@ -6,6 +7,7 @@ let autoClosePageList = []
 export default {
     mounted() {
         this.$ui = $ui
+        this.$navigate = $navigate
 
         const initData = this.$options.initData
 		if (wx.utils.isFunction(initData)) {
@@ -14,6 +16,7 @@ export default {
     },
     onShow() {
         this.$ui = $ui
+        this.$navigate = $navigate
 
 		if (this.$mp && this.$mp.mpType == 'page') {
             lastPageName = wx.url.getPageName(this.$mp.page.route)

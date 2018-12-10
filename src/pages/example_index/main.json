@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "慢连小程序基础框架"
-  }
+    "navigationBarTitleText": "慢连小程序基础框架",
+    "usingComponents": {
+        "van-notify": "/static/vant/notify/index"
+    }
+}
