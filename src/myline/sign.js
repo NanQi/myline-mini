@@ -12,7 +12,7 @@ function api_sign(params, tokenKey) {
 
 wx.pro.interceptor('request', {
     config(options) {
-        let params = options.data || {}
+        let params = Object.assign({}, options.data);
 
         let header = options.header || {}
 

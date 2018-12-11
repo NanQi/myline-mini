@@ -21,8 +21,8 @@ export default {
   methods: {
     async login() {
         // wx.api.get('getData') 
-        let resource = wx.resource('departments')
-        let res = await resource.getList()
+        let resource = wx.resource('employees')
+        let res = await resource.getList({page: 100000})
         console.log(res)
         // this.$navigate.redirectTo('example_index')
     }
