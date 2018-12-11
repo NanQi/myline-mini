@@ -32,22 +32,24 @@ for (let key in wx) {
         }
         return new Promise((resolve, reject) => {
             try {
+                
                 ['fail', 'success', 'complete'].forEach((k) => {
-                    let bak = {}
-                    bak[k] = options[k]
                     options[k] = (res) => {
                         if ($interceptors[key] && $interceptors[key][k]) {
                             res = $interceptors[key][k].call(this, res)
                         }
-                        if (k === 'success')
+                        if (k === 'success') {
                             resolve(res)
-                        else if (k === 'fail')
+                        }
+                        else if (k === 'fail') {
                             reject(res)
+                        }
                     }
                 })
             } catch (err) {
                console.error(err) 
             }
+            console.log('key', key)
             wx[key](options)
         })
     }

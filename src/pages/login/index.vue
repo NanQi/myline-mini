@@ -20,7 +20,10 @@ export default {
   },
   methods: {
     async login() {
-        wx.api.get('getData') 
+        // wx.api.get('getData') 
+        let resource = wx.resource('departments')
+        let res = await resource.getList()
+        console.log(res)
         // this.$navigate.redirectTo('example_index')
     }
   },

@@ -11,36 +11,6 @@ wx.pro.uploadFile = (obj) => {
     })
 }
 
-let _request = wx.pro.request
-wx.pro.request = options => {
-    if(options.toast) {
-		wx.pro.showLoading({ title: '加载中', mask: true})
-	}
-
-    return new Promise((resolve, reject) => { 
-        _request(options)
-            .then(res => {
-                if (res.statusCode >= 400) {
-                    console.warn('wx.request fail [business]', options, res.statusCode, res.data)
-                    reject(res.data)
-                }
-                else {
-                    console.info('wx.request success', options, res.data)
-                    resolve(res.data)
-                }
-            })
-            .catch(err => {
-                console.warn('wx.request fail [network]', options, err)
-                reject(err)
-            })
-            .finally(() => {
-                if(options.toast) {
-                    wx.pro.hideLoading()
-                }
-            })
-    })
-}
-
 let _navigateTo = wx.pro.navigateTo
 wx.pro.navigateTo = (pageName, extras = {}) => {
     let url = wx.url.getUrl(pageName, extras)
