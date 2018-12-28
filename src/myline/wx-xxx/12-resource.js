@@ -4,11 +4,11 @@ class RepositoryBase {
         this.resource = resource
     }
 
-    getList(query) {
+    list(query) {
         return wx.api.get(this.resource, query)
     }
 
-    getItem(id) {
+    item(id) {
         const url = this.resource + '/' + id
 		return wx.api.get(url)
     }

@@ -108,7 +108,7 @@ function get(url, data, toast = true) {
 
 
 /**
- * 执行(post请求)
+ * post请求
  * @author NanQi
  * @param {String} url 请求的URL 
  * @param {Object} data 请求参数 

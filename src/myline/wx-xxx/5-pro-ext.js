@@ -14,7 +14,6 @@ wx.pro.uploadFile = (obj) => {
 let _navigateTo = wx.pro.navigateTo
 wx.pro.navigateTo = (pageName, extras = {}) => {
     let url = wx.url.getUrl(pageName, extras)
-    console.log('url', url)
     return _navigateTo({
         url
     })

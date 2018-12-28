@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div id="main-page">
+    <navbar />
     <van-notify id="van-notify"/>
     <div class="example-div">
       <mp-button type="primary" size="large" @click="login">login</mp-button>
@@ -9,10 +10,12 @@
 
 <script>
 import mpButton from 'mpvue-weui/src/button';
+import navbar from '@/components/navbar';
 
 export default {
   components: {
     mpButton,
+    navbar
   },
   data() {
     return {
@@ -20,15 +23,22 @@ export default {
   },
   methods: {
     async login() {
+        this.$ui.showNotify("alert")
+        return
         // wx.api.get('getData') 
-        let resource = wx.resource('employees')
-        let res = await resource.getList({page: 100000})
-        console.log(res)
+        // let resource = wx.resource('employees')
+        // let res = await resource.list({page: 100000})
+        // console.log(res)
         // this.$navigate.redirectTo('example_index')
     }
   },
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+.example-div {
+    position: absolute;
+    width: 750rpx;
+    top: 60px;
+}
 </style>

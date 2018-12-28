@@ -26,7 +26,7 @@ export default {
       console.log('res', res)
     },
     show() {
-      this.showNotify('通知内容');
+      this.$ui.showNotify('通知内容');
     }
   },
   initData() {

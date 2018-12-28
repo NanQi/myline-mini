@@ -49,7 +49,6 @@ for (let key in wx) {
             } catch (err) {
                console.error(err) 
             }
-            console.log('key', key)
             wx[key](options)
         })
     }
